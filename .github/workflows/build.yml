@@ -1,0 +1,21 @@
+name: run cross build
+
+on:
+  push:
+    branches: [ main ]
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-20.04
+    steps:
+      - uses: actions/checkout@v2
+      
+      - name: Run Build
+        run: bash build.sh
+
+      - name: Upload Build Result
+        uses: actions/upload-artifact@v2
+        with:
+          name: build_result
+          path: out/
